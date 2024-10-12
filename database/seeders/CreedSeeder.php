@@ -9,9 +9,9 @@ use App\Models\Creed;
 class CreedSeeder extends Seeder
 {
     private $dataset = [
-        ['name' => 'Nicene'],
-        ['name' => 'Athanasian'],
-        ['name' => "Apostle's"],
+        ['name' => 'Nicene', 'url' => 'https://reformedstandards.com/ancient-church/nicene-creed.html'],
+        ['name' => 'Athanasian', 'url' => 'https://reformedstandards.com/ancient-church/apostles-creed.html'],
+        ['name' => "Apostle's", 'url' => 'https://reformedstandards.com/ancient-church/apostles-creed.html'],
     ];
 
     public function run(): void

@@ -24,7 +24,8 @@ class PlanController extends Controller
                 'day' => $plan->day,
                 'nt_reading' => $plan->nt_reading,
                 'ot_reading' => $plan->ot_reading,
-                'creed' => $plan->creed->name,  // Assuming the creed relationship
+                'creed' => $plan->creed->name,
+                'creed_url' => $plan->creed->url,
             ]
         ]);
     }

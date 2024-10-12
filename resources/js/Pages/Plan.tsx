@@ -25,7 +25,12 @@ export default function Plan() {
                     <h1>Day {planData.day}</h1>
                     <p>New Testament Reading: {planData.nt_reading}</p>
                     <p>Old Testament Reading: {planData.ot_reading}</p>
-                    <p>Creed: {planData.creed}</p>
+                    <div>
+                        Creed:{" "}
+                        <a href={planData.creed_url}>
+                            The {planData.creed} Creed
+                        </a>
+                    </div>
                 </div>
 
                 {/* Right Chevron */}
