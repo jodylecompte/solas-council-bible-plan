@@ -1,6 +1,8 @@
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { Layout } from '../Layouts/Layout';
+import axios from 'axios';
+
 export default function Welcome({
   auth,
   laravelVersion,
@@ -13,9 +15,18 @@ export default function Welcome({
     document.getElementById('background')?.classList.add('!hidden');
   };
 
+  async function startPlan() {
+    const res = await axios.post('/start-plan');
+
+    console.log(res.data);
+  }
+
   return (
     <Layout>
       <Head title="Welcome" />
+      <button className="my-4 bg-red-500 text-white" onClick={startPlan}>
+        Get started
+      </button>
       <div className="prose">
         <p>
           Welcome to Your Daily Bible Plan, a comprehensive guide to immersing yourself in the entirety of God's Word

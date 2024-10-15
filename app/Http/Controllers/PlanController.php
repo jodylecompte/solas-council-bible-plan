@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\File;
 use App\Models\Plan;
 
 class PlanController extends Controller
@@ -29,4 +30,27 @@ class PlanController extends Controller
             ]
         ]);
     }
+
+    public function startPlan(Request $request)
+    {
+        $oldTestament = File::get(resource_path('data/old_testament.json'));
+        $newTestament = File::get(resource_path('data/new_testament.json'));
+
+        $oldTestament = json_decode($oldTestament, true);
+        $newTestament = json_decode($newTestament, true);
+
+        $planData = [];
+
+        for ($i = 0; $i <= 364; $i++) {
+            $planData[] = [
+                'day' => $i + 1,
+                'ot' => $oldTestament[$i + 1],
+                'nt' => $newTestament[$i + 1]
+            ];
+        }
+
+        return response()->json(['data' => $planData]);
+    }
+
+
 }
