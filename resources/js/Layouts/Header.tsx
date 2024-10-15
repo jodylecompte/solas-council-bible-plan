@@ -16,11 +16,12 @@ export const Header = (props: any) => {
   const GuestNavItems = () => <div>Guest</div>;
 
   return (
-    <header className="bg-[#7C2424] text-white p-8 flex justify-between items-center">
+    <header className="bg-[#7C2424] text-white p-8 px-32 flex justify-between items-center">
       <h1 className="text-2xl font-bold">The Solas Council Reformed Bible Study Plan</h1>
-      <nav>
+      <nav className="flex">
         {authUser && <AuthNavItems />}
         {!authUser && <GuestNavItems />}
+        <span>About</span>
       </nav>
     </header>
   );
