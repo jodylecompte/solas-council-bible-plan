@@ -45,7 +45,8 @@ class PlanController extends Controller
             $planData[] = [
                 'day' => $i + 1,
                 'ot' => $oldTestament[$i + 1],
-                'nt' => $newTestament[$i + 1]
+                'nt' => $newTestament[$i + 1],
+                'creed_id' => ($i % 3) + 1,
             ];
         }
 
