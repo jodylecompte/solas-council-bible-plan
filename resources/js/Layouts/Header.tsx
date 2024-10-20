@@ -4,13 +4,11 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
+import { useAuth } from '@/Context/AuthContext';
 
 export const Header = (props: any) => {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
-  const authUser = props.authUser;
-
-  console.log('Auth User', authUser);
+  const { user } = useAuth();
 
   const AuthNavItems = () => <div>Logged In</div>;
   const GuestNavItems = () => <div>Guest</div>;
@@ -19,9 +17,9 @@ export const Header = (props: any) => {
     <header className="bg-[#7C2424] text-white p-8 px-32 flex justify-between items-center">
       <h1 className="text-2xl font-bold">The Solas Council Reformed Bible Study Plan</h1>
       <nav className="flex">
-        {authUser && <AuthNavItems />}
-        {!authUser && <GuestNavItems />}
-        <span>About</span>
+        <Link href="/about">About</Link>
+        {user && <AuthNavItems />}
+        {!user && <GuestNavItems />}
       </nav>
     </header>
   );
