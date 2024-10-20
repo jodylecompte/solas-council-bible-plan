@@ -10,7 +10,7 @@ export default function Edit({
   mustVerifyEmail,
   status,
   bibleTranslations,
-  preferredTranslationId,
+                                 preferredTranslationId,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string; bibleTranslations: any; preferredTranslationId: any }>) {
   return (
     <Layout>

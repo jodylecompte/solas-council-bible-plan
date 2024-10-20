@@ -11,11 +11,13 @@ export default function UpdateProfileInformation({
   status,
   className = '',
   bibleTranslations,
+                                                     preferredTranslationId,
 }: {
   mustVerifyEmail: boolean;
   status?: string;
   className?: string;
   bibleTranslations: any;
+    preferredTranslationId: any;
 }) {
   const user = usePage().props.auth.user;
 
