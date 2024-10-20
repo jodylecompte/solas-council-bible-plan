@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\BibleTranslation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserPreferredTranslation;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,11 +20,17 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
+        $user = $request->user()->load('preferredTranslation'); // Eager load preferred translation
+        $bibleTranslations = BibleTranslation::all();
+
         return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'mustVerifyEmail' => $user instanceof MustVerifyEmail,
             'status' => session('status'),
+            'bibleTranslations' => $bibleTranslations,
+            'preferredTranslationId' => $user->preferredTranslation->translation_id ?? null, // Provide the current selection
         ]);
     }
+
 
     /**
      * Update the user's profile information.
@@ -37,7 +45,17 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        // Handle updating or inserting preferred translation
+        $translationId = $request->input('preferred_translation_id');
+
+        if ($translationId) {
+            UserPreferredTranslation::updateOrCreate(
+                ['user_id' => $request->user()->id], // Match existing record
+                ['translation_id' => $translationId] // Update or insert new translation
+            );
+        }
+
+        return Redirect::route('profile.edit')->with('status', 'Profile updated successfully!');
     }
 
     /**
