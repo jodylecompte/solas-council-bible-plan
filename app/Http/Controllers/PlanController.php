@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\File;
 use App\Models\Plan;
+use App\Models\Confession;
+use App\Models\Creed;
+use App\Models\User;
+use App\Models\Catechism;
+use Illuminate\Support\Carbon;
 
 class PlanController extends Controller
 {
@@ -33,25 +38,44 @@ class PlanController extends Controller
 
     public function startPlan(Request $request)
     {
-        $oldTestament = File::get(resource_path('data/old_testament.json'));
-        $newTestament = File::get(resource_path('data/new_testament.json'));
+        $startDate = Carbon::now('America/Chicago')->startOfDay();
 
-        $oldTestament = json_decode($oldTestament, true);
-        $newTestament = json_decode($newTestament, true);
+        $oldTestament = json_decode(File::get(resource_path('data/old_testament.json')), true);
+        $newTestament = json_decode(File::get(resource_path('data/new_testament.json')), true);
+
+        $catechisms = Catechism::where('name', 'not like', '%Heidelberg%')->get();
+        $lordsDays = Catechism::where('name', 'like', '%Heidelberg%')->get();
+        $confessions = Confession::all();
 
         $planData = [];
+        $catechismIndex = 0;
+        $lordsDayIndex = 0;
 
         for ($i = 0; $i <= 364; $i++) {
+            $currentDate = $startDate->copy()->addDays($i);
+            $isSunday = $currentDate->isSunday();
+
+            if ($isSunday) {
+                $catechismId = $lordsDays[$lordsDayIndex % $lordsDays->count()]->id;
+                $lordsDayIndex++;
+            } else {
+                $catechismId = $catechismIndex < $catechisms->count()
+                    ? $catechisms[$catechismIndex]->id
+                    : null;
+                $catechismIndex++;
+            }
+
             $planData[] = [
                 'day' => $i + 1,
-                'ot' => $oldTestament[$i + 1],
-                'nt' => $newTestament[$i + 1],
+                'date' => $currentDate->toDateString(),
+                'ot' => $oldTestament[$i + 1] ?? null,
+                'nt' => $newTestament[$i + 1] ?? null,
+                'catechism_id' => $catechismId,
+                'confession_id' => $i % $confessions->count(),
                 'creed_id' => ($i % 3) + 1,
             ];
         }
 
         return response()->json(['data' => $planData]);
     }
-
-
 }

@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('catechisms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('resource_id');
+            $table->string('resource_url');
             $table->timestamps();
         });
     }
