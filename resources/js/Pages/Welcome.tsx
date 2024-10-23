@@ -2,6 +2,7 @@ import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { Layout } from '../Layouts/Layout';
 import axios from 'axios';
+import { useAuth } from '@/Context/AuthContext';
 
 export default function Welcome({
   auth,
@@ -15,19 +16,12 @@ export default function Welcome({
     document.getElementById('background')?.classList.add('!hidden');
   };
 
-  async function startPlan() {
-    const res = await axios.post('/start-plan');
-
-    console.log(res.data);
-  }
+  const { user } = useAuth();
 
   return (
     <Layout>
       <Head title="Welcome" />
-      <button className="my-4 bg-red-500 text-white" onClick={startPlan}>
-        Get started
-      </button>
-      <div className="prose">
+      <div className="prose prose-lg mx-auto">
         <p>
           Welcome to Your Daily Bible Plan, a comprehensive guide to immersing yourself in the entirety of God's Word
           and rich theological wisdom. Whether you're looking to deepen your faith, gain a broader understanding of
@@ -58,6 +52,11 @@ export default function Welcome({
           Join us today and embark on a transformative journey that will deepen your knowledge, strengthen your faith,
           and enrich your spiritual life!
         </p>
+      </div>
+      <div className="mb-6 mt-10  text-center">
+        <Link className="bg-[#7C2424] max-w-[150px] mx-auto p-4 text-white" href={user ? '/plan' : '/login'}>
+          Get Started
+        </Link>
       </div>
     </Layout>
   );
