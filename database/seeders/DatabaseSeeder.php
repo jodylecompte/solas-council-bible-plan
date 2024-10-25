@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CatechismSeeder::class,
             ConfessionSeeder::class,
             CreedSeeder::class,
+            BibleTranslationSeeder::class,
         ]);
     }
 }
