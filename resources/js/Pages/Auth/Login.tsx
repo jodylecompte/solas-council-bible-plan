@@ -28,7 +28,13 @@ export default function Login({ status, canResetPassword }: { status?: string; c
       <Head title="Log in" />
 
       {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
-
+      <h2 className="text-center text-xl mb-8">
+        New here?
+        <Link href="/register" className="text-slate-500">
+          {' '}
+          Sign up!
+        </Link>
+      </h2>
       <form onSubmit={submit} className="w-1/2 mx-auto">
         <div>
           <InputLabel htmlFor="email" value="Email" />
