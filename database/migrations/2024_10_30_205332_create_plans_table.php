@@ -21,8 +21,7 @@ return new class extends Migration {
             $table->tinyInteger('progress_creed');
             $table->tinyInteger('progress_catechism');
             $table->tinyInteger('progress_confession');
-
-
+            $table->tinyInteger('progress_day');
 
             $table->unsignedBigInteger('user_id')->nullable();
 
