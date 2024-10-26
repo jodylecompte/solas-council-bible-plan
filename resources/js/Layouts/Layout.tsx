@@ -21,7 +21,7 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header authUser={authUser} />
-      <main className="flex-grow bg-white pt-12">{children}</main>
+      <main className="flex-grow bg-white pt-12 px-12">{children}</main>
       <footer className="bg-[#7C2424] text-white py-4">
         <div className="text-center">
           <div>
