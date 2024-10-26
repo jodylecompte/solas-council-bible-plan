@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use App\Models\Plan;
-use App\Models\Confession;
-use App\Models\Creed;
-use App\Models\User;
-use App\Models\Catechism;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PlanController extends Controller
 {
@@ -35,47 +31,35 @@ class PlanController extends Controller
             ]
         ]);
     }
-
     public function startPlan(Request $request)
     {
-        $startDate = Carbon::now('America/Chicago')->startOfDay();
+        $userId = Auth::id();  // Get the ID of the logged-in user
 
-        $oldTestament = json_decode(File::get(resource_path('data/old_testament.json')), true);
-        $newTestament = json_decode(File::get(resource_path('data/new_testament.json')), true);
+        // Step 1: Check the last completed progress day for the user
+        $lastProgressDay = Plan::where('user_id', $userId)
+            ->where('progress_day', 1)
+            ->max('day');
 
-        $catechisms = Catechism::where('name', 'not like', '%Heidelberg%')->get();
-        $lordsDays = Catechism::where('name', 'like', '%Heidelberg%')->get();
-        $confessions = Confession::all();
+        Log::info("User {$userId} last progress day: {$lastProgressDay}");
 
-        $planData = [];
-        $catechismIndex = 0;
-        $lordsDayIndex = 0;
-
-        for ($i = 0; $i <= 364; $i++) {
-            $currentDate = $startDate->copy()->addDays($i);
-            $isSunday = $currentDate->isSunday();
-
-            if ($isSunday) {
-                $catechismId = $lordsDays[$lordsDayIndex % $lordsDays->count()]->id;
-                $lordsDayIndex++;
-            } else {
-                $catechismId = $catechismIndex < $catechisms->count()
-                    ? $catechisms[$catechismIndex]->id
-                    : null;
-                $catechismIndex++;
-            }
-
-            $planData[] = [
-                'day' => $i + 1,
-                'date' => $currentDate->toDateString(),
-                'ot' => $oldTestament[$i + 1] ?? null,
-                'nt' => $newTestament[$i + 1] ?? null,
-                'catechism_id' => $catechismId,
-                'confession_id' => $i % $confessions->count(),
-                'creed_id' => ($i % 3) + 1,
-            ];
+        if ($lastProgressDay) {
+            $nextDay = $lastProgressDay + 1;
+            Log::info("Redirecting user {$userId} to day {$nextDay}");
+            return redirect()->route('plan.show', ['day' => $nextDay]);
         }
 
-        return response()->json(['data' => $planData]);
+        // Step 2: If no progress found, generate a new plan for the user
+        Log::info("Generating a new plan for user {$userId}");
+        try {
+            Plan::createNewPlan($userId);  // Call the static method to generate the plan
+            Log::info("New plan successfully created for user {$userId}");
+        } catch (\Exception $e) {
+            Log::error("Failed to create a new plan for user {$userId}: {$e->getMessage()}");
+            return redirect()->back()->with('error', 'Failed to create your plan. Please try again.');
+        }
+
+        // Step 3: Redirect to day 1 after the plan is created
+        Log::info("Redirecting user {$userId} to day 1");
+        return redirect()->route('plan.show', ['day' => 1]);
     }
 }

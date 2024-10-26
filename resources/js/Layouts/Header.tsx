@@ -15,10 +15,12 @@ export const Header = (props: any) => {
 
   return (
     <header className="bg-[#7C2424] text-white p-8 px-32 flex justify-between items-center">
-      <h1 className="text-2xl font-bold">The Solas Council Reformed Bible Study Plan</h1>
-      <nav className="flex gap-3">
+      <h1 className="text-2xl font-bold">
+        <Link href="/">The Solas Council Reformed Bible Study Plan</Link>
+      </h1>
+      <nav className="flex gap-7">
         <Link href="/about">About</Link>
-        <Link href="/plan">Plan</Link>
+        <Link href="/dashboard">Plan</Link>
         {user && <Link href="/profile">Profile</Link>}
         {!user && <Link href="/login">Login</Link>}
       </nav>

@@ -31,10 +31,14 @@ Route::get('/about', function () {
 //     return Inertia::render('Demo');
 // })->middleware(['auth', 'verified'])->name('demo');
 
+Route::get('/plan', [PlanController::class, 'startPlan'])
+    ->name('plan.start')
+    ->middleware('auth');
 
 Route::get('/plan/{day}', [PlanController::class, 'show'])
     ->where('day', '[1-9][0-9]{0,2}')
-    ->name('plan.show');
+    ->name('plan.show')
+    ->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {

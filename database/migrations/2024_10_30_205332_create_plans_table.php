@@ -23,10 +23,10 @@ return new class extends Migration {
             $table->tinyInteger('progress_confession');
             $table->tinyInteger('progress_day');
 
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
 
             $table->unsignedBigInteger('creed_id');
-            $table->unsignedBigInteger('catechism_id');
+            $table->unsignedBigInteger('catechism_id')->nullable();
             $table->unsignedBigInteger('confession_id');
             $table->timestamps();
 
