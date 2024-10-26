@@ -1,6 +1,5 @@
 import { FaUser } from 'react-icons/fa';
 import { Link, useForm } from '@inertiajs/react';
-import { Inertia } from '@inertiajs/inertia';
 import { useAuth } from '@/Context/AuthContext';
 
 export const Header = (props: any) => {
@@ -13,7 +12,6 @@ export const Header = (props: any) => {
     post(route('logout'), {
       onSuccess: () => {
         setUser(undefined);
-        // Inertia.visit('/login', { replace: true });
         console.log('Logged out successfully!');
       },
     });
