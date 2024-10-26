@@ -1,6 +1,7 @@
 import { Layout } from '@/Layouts/Layout';
 import { usePage, Link } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import { parseScriptureReferences } from '@/util/BibleParser';
 // There's no reason to have this much data but I'll trim this down once the plan day component is finalized
 type PlanData = {
   id: number;
@@ -46,48 +47,89 @@ interface PlanPageProps extends PageProps {
   planData: PlanData;
 }
 
+type PlanLinkProps = {
+  href: string;
+  children: React.ReactNode;
+};
+
+const PlanLink = ({ href, children }: PlanLinkProps) => {
+  return (
+    <a href={href} target="_BLANK" className="text-[#7C2424] hover:underline mr-2">
+      {children}
+    </a>
+  );
+};
+
 export default function Plan() {
   const { planData } = usePage<PlanPageProps>().props;
 
   const previousDay = planData.day > 1 ? planData.day - 1 : null;
   const nextDay = planData.day < 365 ? planData.day + 1 : null;
 
+  const oldTestamentReading = parseScriptureReferences(planData.ot_reading);
+  const newTestamentReading = parseScriptureReferences(planData.nt_reading);
+
   return (
     <Layout>
       <div className="flex justify-center items-center h-full gap-5">
         {/* Left Chevron */}
-        <div>
+        {/* <div>
           {previousDay && (
             <Link href={`/plan/${previousDay}`}>
               <span className="text-4xl">{'<'}</span>
             </Link>
           )}
-        </div>
+        </div> */}
 
         {/* Plan Data */}
         <div>
-          <h1>Day {planData.day}</h1>
-          <p>New Testament Reading: {planData.nt_reading}</p>
-          <p>Old Testament Reading: {planData.ot_reading}</p>
-          <div>
-            Creed: <a href={planData.creed.url}>The {planData.creed.name} Creed</a>
-          </div>
-          <div>
-            Confession: <a href={planData.confession.resource_url}>{planData.confession.label}</a>
-          </div>
-          <div>
-            Catechism: <a href={planData.catechism.resource_url}>{planData.catechism.name}</a>
-          </div>
+          <h2 className="text-2xl font-bold mb-6">Day {planData.day}</h2>
+          <p className="mb-4">
+            <div className="font-semibold">Old Testament Reading: </div>
+            {oldTestamentReading.map((reading) => (
+              <div>
+                <PlanLink href={reading.url}>{reading.label}</PlanLink>
+              </div>
+            ))}
+          </p>
+          <p className="mb-4">
+            <div className="font-semibold">New Testament Reading: </div>
+            <div>
+              {newTestamentReading.map((reading) => (
+                <div>
+                  <PlanLink href={reading.url}>{reading.label}</PlanLink>
+                </div>
+              ))}
+            </div>
+          </p>
+          <p className="mb-4">
+            <div className="font-semibold">Daily Creed: </div>
+            <div>
+              <PlanLink href={planData.creed.url}>The {planData.creed.name} Creed</PlanLink>
+            </div>
+          </p>
+          <p className="mb-4">
+            <div className="font-semibold">Daily Confessional: </div>
+            <div>
+              <PlanLink href={planData.confession.resource_url}>{planData.confession.label}</PlanLink>
+            </div>
+          </p>
+          <p className="mb-4">
+            <div className="font-semibold">Daily Catechis: </div>
+            <div>
+              <PlanLink href={planData.catechism.resource_url}>{planData.catechism.name}</PlanLink>
+            </div>
+          </p>
         </div>
 
         {/* Right Chevron */}
-        <div>
+        {/* <div>
           {nextDay && (
             <Link href={`/plan/${nextDay}`}>
               <span className="text-4xl">{'>'}</span>
             </Link>
           )}
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
