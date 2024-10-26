@@ -18,11 +18,6 @@ Route::get('/', function () {
 
 Route::post('/start-plan', [PlanController::class, 'startPlan'])->name('start-plan');
 
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/about', function () {
     return Inertia::render('About');
 })->middleware([])->name('about');

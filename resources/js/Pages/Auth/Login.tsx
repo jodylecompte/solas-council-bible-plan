@@ -4,7 +4,6 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { useAuth } from '@/Context/AuthContext';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { Layout } from '@/Layouts/Layout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
