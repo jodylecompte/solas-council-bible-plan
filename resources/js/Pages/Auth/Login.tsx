@@ -3,6 +3,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import { useAuth } from '@/Context/AuthContext';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Layout } from '@/Layouts/Layout';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -15,11 +16,19 @@ export default function Login({ status, canResetPassword }: { status?: string; c
     remember: false,
   });
 
+  const { setUser } = useAuth();
+
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
 
     post(route('login'), {
-      onFinish: () => reset('password'),
+      onSuccess: (page) => {
+        const user = page.props.auth?.user;
+        if (user) {
+          setUser(user);
+        }
+        reset('password');
+      },
     });
   };
 

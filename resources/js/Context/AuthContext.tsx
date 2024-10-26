@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface User {
   id: number;
@@ -8,6 +8,7 @@ interface User {
 
 interface AuthContextType {
   user?: User;
+  setUser: (user: User | undefined) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,10 +22,12 @@ export const useAuth = (): AuthContextType => {
 };
 
 interface AuthProviderProps {
-  auth?: AuthContextType;
-  children: React.ReactNode;
+  initialUser?: User;
+  children: ReactNode;
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ auth, children }) => {
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+export const AuthProvider: React.FC<AuthProviderProps> = ({ initialUser, children }) => {
+  const [user, setUser] = useState<User | undefined>(initialUser);
+
+  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 };
