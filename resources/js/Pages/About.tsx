@@ -1,9 +1,15 @@
 import { Layout } from '@/Layouts/Layout';
+import { Head } from '@inertiajs/react';
+
+import { FaUser } from 'react-icons/fa';
 
 export default function About() {
   return (
     <Layout>
-      <div class="prose">
+      <Head>
+        <title>About</title>
+      </Head>
+      <div className="prose prose-lg mx-auto mb-8">
         <h1 className="text-5xl font-medium">About</h1>
         <h2 className="text-3xl font-medium">About This Plan</h2>
         <p>

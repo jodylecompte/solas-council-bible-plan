@@ -1,27 +1,15 @@
-import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { Layout } from '../Layouts/Layout';
-import axios from 'axios';
+
 import { useAuth } from '@/Context/AuthContext';
+import { Layout } from '@/Layouts/Layout';
 
-export default function Welcome({
-  auth,
-  laravelVersion,
-  phpVersion,
-}: PageProps<{ laravelVersion: string; phpVersion: string }>) {
-  const handleImageError = () => {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-  };
-
+export default function Welcome() {
   const { user } = useAuth();
 
   return (
     <Layout>
       <Head title="Welcome" />
-      <div className="prose prose-lg mx-auto">
+      <div className="prose prose-lg mx-auto !px-0 ">
         <p>
           Welcome to Your Daily Bible Plan, a comprehensive guide to immersing yourself in the entirety of God's Word
           and rich theological wisdom. Whether you're looking to deepen your faith, gain a broader understanding of

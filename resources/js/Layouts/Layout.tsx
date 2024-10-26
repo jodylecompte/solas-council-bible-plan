@@ -21,13 +21,15 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header authUser={authUser} />
-      <main className="flex-grow py-8 px-32 bg-white">{children}</main>
-      <footer className="bg-[#7C2424] text-white p-10">
+      <main className="flex-grow bg-white pt-12">{children}</main>
+      <footer className="bg-[#7C2424] text-white py-4">
         <div className="text-center">
-          Coded with ❤️ by <a href="https://jodylecompte.com">Jody LeCompte</a>
-          <br />
-          <br />
-          This is an open source community effort that is not directly affiliated with The Solas Council.
+          <div>
+            Coded with ❤️ by <a href="https://jodylecompte.com">Jody LeCompte</a>
+          </div>
+          <div className="pt-2">
+            This is an open source community effort that is not directly affiliated with The Solas Council.
+          </div>
         </div>
       </footer>
     </>
