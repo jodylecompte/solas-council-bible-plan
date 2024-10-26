@@ -18,17 +18,13 @@ class PlanController extends Controller
         }
 
         // Fetch the plan for the given day
-        $plan = Plan::where('day', $day)->with('creed')->firstOrFail();
+        $plan = Plan::where('day', $day)
+            ->with(['creed', 'confession', 'catechism'])
+            ->firstOrFail();
 
         // Return the plan data to the Inertia view
         return Inertia::render('Plan', [
-            'planData' => [
-                'day' => $plan->day,
-                'nt_reading' => $plan->nt_reading,
-                'ot_reading' => $plan->ot_reading,
-                'creed' => $plan->creed->name,
-                'creed_url' => $plan->creed->url,
-            ]
+            'planData' => $plan,
         ]);
     }
     public function startPlan(Request $request)

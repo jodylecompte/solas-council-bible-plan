@@ -21,6 +21,16 @@ class Plan extends Model
         return $this->belongsTo(Creed::class);
     }
 
+    public function confession()
+    {
+        return $this->belongsTo(Confession::class);
+    }
+
+    public function catechism()
+    {
+        return $this->belongsTo(Catechism::class);
+    }
+
     public static function createNewPlan($userId)
     {
         $startDate = Carbon::now('America/Chicago')->startOfDay();
