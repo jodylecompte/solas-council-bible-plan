@@ -61,7 +61,9 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
 };
 
 export default function Plan() {
-  const { planData } = usePage<PlanPageProps>().props;
+  const { planData, preferredTranslation } = usePage<PlanPageProps>().props;
+
+  console.log('Translation: ', preferredTranslation);
 
   const previousDay = planData.day > 1 ? planData.day - 1 : null;
   const nextDay = planData.day < 365 ? planData.day + 1 : null;
@@ -75,8 +77,33 @@ export default function Plan() {
         <div className="overflow-hidden bg-white shadow sm:rounded-lg">
           <div className="px-4 py-6 sm:px-6 flex justify-between items-center">
             <h3 className="text-base font-semibold leading-7 text-gray-900">Day {planData.day} of 365</h3>
-            <div className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+            <div className="">
               <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700">Mark Day Complete</button>
+            </div>
+          </div>
+          <div className="px-4 py-6 sm:px-6">
+            <div role="alert" className="alert alert-">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="h-6 w-6 shrink-0 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>
+                Scripture links default to ESV, you can choose a prefered translation in your
+                <Link href="/profile" className="underline">
+                  {' '}
+                  user profile settings
+                </Link>
+                .
+              </span>
             </div>
           </div>
           <div className="border-t border-gray-100">

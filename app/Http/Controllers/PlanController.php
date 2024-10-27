@@ -12,21 +12,23 @@ class PlanController extends Controller
 {
     public function show($day)
     {
-        // Ensure the day is between 1 and 365
         if ($day < 1 || $day > 365) {
             abort(404, 'Day must be between 1 and 365.');
         }
 
-        // Fetch the plan for the given day
         $plan = Plan::where('day', $day)
             ->with(['creed', 'confession', 'catechism'])
             ->firstOrFail();
 
-        // Return the plan data to the Inertia view
+        $user = Auth::user();
+        $preferredTranslation = $user?->preferredTranslation;
+
         return Inertia::render('Plan', [
             'planData' => $plan,
+            'preferredTranslation' => $preferredTranslation,
         ]);
     }
+
     public function startPlan(Request $request)
     {
         $userId = Auth::id();  // Get the ID of the logged-in user
