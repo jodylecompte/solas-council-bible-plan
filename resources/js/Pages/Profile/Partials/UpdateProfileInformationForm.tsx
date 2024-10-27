@@ -11,13 +11,13 @@ export default function UpdateProfileInformation({
   status,
   className = '',
   bibleTranslations,
-                                                     preferredTranslationId,
+  preferredTranslationId,
 }: {
   mustVerifyEmail: boolean;
   status?: string;
   className?: string;
   bibleTranslations: any;
-    preferredTranslationId: any;
+  preferredTranslationId: any;
 }) {
   const user = usePage().props.auth.user;
 
@@ -26,6 +26,7 @@ export default function UpdateProfileInformation({
   const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
     name: user.name,
     email: user.email,
+    preferred_translation_id: preferredTranslationId || '',
   });
 
   const submit: FormEventHandler = (e) => {
@@ -79,7 +80,13 @@ export default function UpdateProfileInformation({
 
         <div>
           <InputLabel htmlFor="preferredTranslation" value="Preferred Translation" />
-          <select id="preferredTranslation" name="preferred_translation_id" defaultValue={preferredTranslationId}>
+          <select
+            id="preferredTranslation"
+            name="preferred_translation_id"
+            value={data.preferred_translation_id}
+            onChange={(e) => setData('preferred_translation_id', e.target.value)}
+            className="mt-1 block w-full"
+          >
             <option value="">Select your favorite bible translation</option>
             {bibleTranslations.map((translation: any) => (
               <option key={translation.id} value={translation.id}>
@@ -87,6 +94,7 @@ export default function UpdateProfileInformation({
               </option>
             ))}
           </select>
+          <InputError className="mt-2" message={errors.preferred_translation_id} />
         </div>
 
         {mustVerifyEmail && user.email_verified_at === null && (

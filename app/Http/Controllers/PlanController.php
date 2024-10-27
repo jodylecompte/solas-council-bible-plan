@@ -21,7 +21,11 @@ class PlanController extends Controller
             ->firstOrFail();
 
         $user = Auth::user();
-        $preferredTranslation = $user?->preferredTranslation;
+        
+
+        $preferredTranslation = $user?->preferredTranslation()
+        ->with('translation')  // Eager-load the related translation
+        ->first();
 
         return Inertia::render('Plan', [
             'planData' => $plan,

@@ -16,6 +16,6 @@ class UserPreferredTranslation extends Model
 
     public function translation(): BelongsTo
     {
-        return $this->belongsTo(BibleTranslation::class);
+        return $this->belongsTo(BibleTranslation::class, 'translation_id');
     }
 }

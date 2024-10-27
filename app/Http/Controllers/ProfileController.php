@@ -12,6 +12,7 @@ use App\Models\UserPreferredTranslation;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -37,6 +38,8 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -45,15 +48,18 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        // Handle updating or inserting preferred translation
         $translationId = $request->input('preferred_translation_id');
 
+        Log::info('Preferred translation updated:', ['translation' => $translationId]);
+
         if ($translationId) {
-            UserPreferredTranslation::updateOrCreate(
-                ['user_id' => $request->user()->id], // Match existing record
-                ['translation_id' => $translationId] // Update or insert new translation
+            $record = UserPreferredTranslation::updateOrCreate(
+                ['user_id' => $request->user()->id],
+                ['translation_id' => $translationId]
             );
         }
+
+        Log::info('Preferred translation updated:', ['record' => $record]);
 
         return Redirect::route('profile.edit')->with('status', 'Profile updated successfully!');
     }
