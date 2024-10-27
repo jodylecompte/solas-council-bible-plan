@@ -15,13 +15,19 @@ interface CustomPageProps extends PageProps {
   canRegister: boolean;
 }
 
-export function Layout({ children }: PropsWithChildren) {
-  const { authUser, canLogin, canRegister } = usePage<CustomPageProps>().props;
+interface LayoutProps extends PropsWithChildren {
+  backgroundColor?: string;
+}
+
+export function Layout({ children, backgroundColor }: LayoutProps) {
+  const { authUser, canLogin, canRegister, backgroundOverride } = usePage<CustomPageProps>().props;
 
   return (
     <>
       <Header authUser={authUser} />
-      <main className="flex-grow bg-white pt-12 px-12">{children}</main>
+      <main className="flex-grow bg-white pt-12 px-12" style={{ background: backgroundColor }}>
+        {children}
+      </main>
       <footer className="bg-[#7C2424] text-white py-4">
         <div className="text-center">
           <div>
