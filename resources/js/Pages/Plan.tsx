@@ -70,66 +70,58 @@ export default function Plan() {
   const newTestamentReading = parseScriptureReferences(planData.nt_reading);
 
   return (
-    <Layout>
-      <div className="flex justify-center items-center h-full gap-5">
-        {/* Left Chevron */}
-        {/* <div>
-          {previousDay && (
-            <Link href={`/plan/${previousDay}`}>
-              <span className="text-4xl">{'<'}</span>
-            </Link>
-          )}
-        </div> */}
-
-        {/* Plan Data */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6">Day {planData.day}</h2>
-          <p className="mb-4">
-            <div className="font-semibold">Old Testament Reading: </div>
-            {oldTestamentReading.map((reading) => (
-              <div>
-                <PlanLink href={reading.url}>{reading.label}</PlanLink>
+    <Layout backgroundColor="#F3F4F6">
+      <div className="max-w-[700px] mx-auto md:w-3/4">
+        <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+          <div className="px-4 py-6 sm:px-6 flex justify-between items-center">
+            <h3 className="text-base font-semibold leading-7 text-gray-900">Day {planData.day} of 365</h3>
+            <div className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+              <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700">Mark Day Complete</button>
+            </div>
+          </div>
+          <div className="border-t border-gray-100">
+            <dl className="divide-y divide-gray-100">
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-900">Old Testament</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {oldTestamentReading.map((reading) => (
+                    <div>
+                      <PlanLink href={reading.url}>{reading.label} (ESV)</PlanLink>
+                    </div>
+                  ))}
+                </dd>
               </div>
-            ))}
-          </p>
-          <p className="mb-4">
-            <div className="font-semibold">New Testament Reading: </div>
-            <div>
-              {newTestamentReading.map((reading) => (
-                <div>
-                  <PlanLink href={reading.url}>{reading.label}</PlanLink>
-                </div>
-              ))}
-            </div>
-          </p>
-          <p className="mb-4">
-            <div className="font-semibold">Daily Creed: </div>
-            <div>
-              <PlanLink href={planData.creed.url}>The {planData.creed.name} Creed</PlanLink>
-            </div>
-          </p>
-          <p className="mb-4">
-            <div className="font-semibold">Daily Confessional: </div>
-            <div>
-              <PlanLink href={planData.confession.resource_url}>{planData.confession.label}</PlanLink>
-            </div>
-          </p>
-          <p className="mb-4">
-            <div className="font-semibold">Daily Catechis: </div>
-            <div>
-              <PlanLink href={planData.catechism.resource_url}>{planData.catechism.name}</PlanLink>
-            </div>
-          </p>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-900">New Testament</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  {newTestamentReading.map((reading) => (
+                    <div>
+                      <PlanLink href={reading.url}>{reading.label} (ESV)</PlanLink>
+                    </div>
+                  ))}
+                </dd>
+              </div>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-900">Daily Creed</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  <PlanLink href={planData.creed.url}>The {planData.creed.name} Creed</PlanLink>
+                </dd>
+              </div>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-900">Daily Confession</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  <PlanLink href={planData.confession.resource_url}>{planData.confession.label}</PlanLink>
+                </dd>
+              </div>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-900">Daily Catechism</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  <PlanLink href={planData.catechism.resource_url}>{planData.catechism.name}</PlanLink>
+                </dd>
+              </div>
+            </dl>
+          </div>
         </div>
-
-        {/* Right Chevron */}
-        {/* <div>
-          {nextDay && (
-            <Link href={`/plan/${nextDay}`}>
-              <span className="text-4xl">{'>'}</span>
-            </Link>
-          )}
-        </div> */}
       </div>
     </Layout>
   );
