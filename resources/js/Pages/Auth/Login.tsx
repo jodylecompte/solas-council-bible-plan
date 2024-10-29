@@ -43,7 +43,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
           Sign up!
         </Link>
       </h2>
-      <form onSubmit={submit} className="w-1/2 mx-auto">
+      <form onSubmit={submit} className="md:w-1/2 mx-auto">
         <div>
           <InputLabel htmlFor="email" value="Email" />
 
@@ -80,16 +80,16 @@ export default function Login({ status, canResetPassword }: { status?: string; c
         <div className="mt-4 block">
           <label className="flex items-center">
             <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} />
-            <span className="">Remember me</span>
+            <span className="pl-2">Remember me</span>
           </label>
         </div>
 
         <div className="mt-4 flex items-center justify-end">
-          {canResetPassword && (
+          {/* {canResetPassword && (
             <Link href={route('password.request')} className="0">
               Forgot your password?
             </Link>
-          )}
+          )} */}
 
           <PrimaryButton className="ms-4" disabled={processing}>
             Log in

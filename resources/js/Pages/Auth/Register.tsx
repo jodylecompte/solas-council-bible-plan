@@ -2,7 +2,6 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { Layout } from '@/Layouts/Layout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -27,7 +26,7 @@ export default function Register() {
     <Layout>
       <Head title="Register" />
 
-      <form onSubmit={submit} className="w-1/2 mx-auto">
+      <form onSubmit={submit} className="md:w-1/2 mx-auto">
         <div>
           <InputLabel htmlFor="name" value="Name" />
 

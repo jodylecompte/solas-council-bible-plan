@@ -1,5 +1,5 @@
 import { Layout } from '@/Layouts/Layout';
-import { usePage, Link } from '@inertiajs/react';
+import { usePage, Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { parseScriptureReferences } from '@/util/BibleParser';
 // There's no reason to have this much data but I'll trim this down once the plan day component is finalized
@@ -73,10 +73,11 @@ export default function Plan() {
 
   return (
     <Layout backgroundColor="#F3F4F6">
-      <div className="max-w-[700px] mx-auto md:w-3/4">
+      <Head title={`Day ${planData.day}`} />
+      <div className="max-w-[700px] mx-auto md:w-3/4 mb-8">
         <div className="overflow-hidden bg-white shadow sm:rounded-lg">
-          <div className="px-4 py-6 sm:px-6 flex justify-between items-center">
-            <h3 className="text-base font-semibold leading-7 text-gray-900">Day {planData.day} of 365</h3>
+          <div className="px-4 py-6 sm:px-6 flex flex-col sm:flex-row justify-between items-center">
+            <h3 className="text-base font-semibold leading-7 text-gray-900 mb-2 sm:mb-0">Day {planData.day} of 365</h3>
             <div className="">
               <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700">Mark Day Complete</button>
             </div>
