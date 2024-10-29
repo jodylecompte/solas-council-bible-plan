@@ -18,7 +18,7 @@ class ConfessionSeeder extends Seeder
         DB::table('confessions')->truncate();
 
 
-        $articles39Url = 'https://www.anglicancommunion.org/media/109014/Thirty-Nine-Articles-of-Religion.pdf';
+        $articles39Url = 'https://www.the39articles.com/#article-';
         $wcfUrl = 'https://thewestminsterstandard.org/the-westminster-confession/';
         $dataset = [
             [
@@ -47,7 +47,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 1',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '1',
             ],
             [
                 'label' => 'Westminster Confession of Faith: Chapter 7',
@@ -75,7 +75,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 2',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '2',
             ],
             [
                 'label' => 'Westminster Confession of Faith: Chapter 13',
@@ -103,7 +103,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 3',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '3',
             ],
             [
                 'label' => 'Westminster Confession of Faith: Chapter 19',
@@ -131,7 +131,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 4',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '4',
             ],
             [
                 'label' => 'Westminster Confession of Faith: Chapter 25',
@@ -159,7 +159,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 5',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '5',
             ],
             [
                 'label' => 'Westminster Confession of Faith: Chapter 31',
@@ -187,7 +187,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 6',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '6',
             ],
             [
                 'label' => 'Directory for Family Worship: Preface ',
@@ -215,7 +215,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 7',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '7',
             ],
             [
                 'label' => 'The Sum of Saving Knowledge: The Sum of Saving Knowledge',
@@ -243,7 +243,7 @@ class ConfessionSeeder extends Seeder
             ],
             [
                 'label' => '39 Articles of Religion: Article 8',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '8',
             ],
             [
                 'label' => 'Forms of Presbyterial Church-Government: Preface - Of the Church',
@@ -274,7 +274,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 9',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '9',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 1',
@@ -302,7 +302,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 10',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '10',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 7',
@@ -330,7 +330,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 11',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '11',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 13',
@@ -358,7 +358,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 12',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '12',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 19',
@@ -386,7 +386,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 13',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '13',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 25',
@@ -414,7 +414,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 14',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '14',
             ],
             [
                 'label' => 'Baptist Confession of Faith: Chapter 31',
@@ -442,7 +442,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 15',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '15',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 5',
@@ -470,7 +470,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 16',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '16',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 11',
@@ -498,7 +498,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 17',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '17',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 17 ',
@@ -526,7 +526,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 18',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '18',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 23',
@@ -554,7 +554,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 19',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '19',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 29',
@@ -582,7 +582,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 20',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '20',
             ],
             [
                 'label' => 'Belgic Confession of Faith: Article 35',
@@ -610,7 +610,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 21',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '21',
             ],
             [
                 'label' => 'The Canons of Dort: The First Main Point of Doctrine Articles 13-15',
@@ -638,7 +638,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 22',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '22',
             ],
             [
                 'label' => 'The Canons of Dort: The Second Main Point of Doctrine Articles 4-7',
@@ -666,7 +666,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 23',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '23',
             ],
             [
                 'label' => 'The Canons of Dort: The Third and Fourth Main Points of Doctrine Articles 9-11',
@@ -694,7 +694,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 24',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '24',
             ],
             [
                 'label' => 'The Canons of Dort: The Fifth Main Point of Doctrine Articles 1-3',
@@ -722,7 +722,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 35',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '25',
             ],
             [
                 'label' => 'The Canons of Dort: The Fifth Main Point of Doctrine Rejections 4-6',
@@ -750,7 +750,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 26',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '26',
             ],
             [
                 'label' => 'Church Order of Dort: Article 3',
@@ -778,7 +778,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 27',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '27',
             ],
             [
                 'label' => 'Church Order of Dort: Article 9',
@@ -806,7 +806,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 28',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '29',
             ],
             [
                 'label' => 'Church Order of Dort: Article 15',
@@ -834,7 +834,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 29',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '29',
             ],
             [
                 'label' => 'Church Order of Dort: Article 21',
@@ -862,7 +862,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 30',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '30',
             ],
             [
                 'label' => 'Church Order of Dort: Article 27',
@@ -891,7 +891,7 @@ for the Ordination of Ministers ',
 
             [
                 'label' => '39 Articles of Religion: Article 31',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '31',
             ],
             [
                 'label' => 'Church Order of Dort: Article 33',
@@ -919,7 +919,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 32',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '32',
             ],
             [
                 'label' => 'Church Order of Dort: Article 39',
@@ -947,7 +947,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 33',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '33',
             ],
             [
                 'label' => 'Church Order of Dort: Article 45',
@@ -975,7 +975,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 34',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '34',
             ],
             [
                 'label' => 'Church Order of Dort: Article 51',
@@ -1003,7 +1003,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 35',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '35',
             ],
             [
                 'label' => 'Church Order of Dort: Article 57',
@@ -1031,7 +1031,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 36',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '36',
             ],
             [
                 'label' => 'Church Order of Dort: Article 63',
@@ -1059,7 +1059,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 37',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '37',
             ],
             [
                 'label' => 'Church Order of Dort: Article 69',
@@ -1087,7 +1087,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 38',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '38',
             ],
             [
                 'label' => 'Church Order of Dort: Article 75',
@@ -1115,7 +1115,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => '39 Articles of Religion: Article 39',
-                'resource_url' => $articles39Url,
+                'resource_url' => $articles39Url + '39',
             ],
             [
                 'label' => 'Church Order of Dort: Article 81',
