@@ -1,4 +1,3 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { PageProps } from '@/types';
 import { Head } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';
@@ -10,7 +9,7 @@ export default function Edit({
   mustVerifyEmail,
   status,
   bibleTranslations,
-                                 preferredTranslationId,
+  preferredTranslationId,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string; bibleTranslations: any; preferredTranslationId: any }>) {
   return (
     <Layout>

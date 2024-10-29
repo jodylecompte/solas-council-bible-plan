@@ -6,7 +6,7 @@ export const Header = (props: any) => {
   const { user, setUser } = useAuth();
   const { post } = useForm();
 
-  const logout = (e) => {
+  const logout = (e: any) => {
     e.preventDefault();
 
     post(route('logout'), {
