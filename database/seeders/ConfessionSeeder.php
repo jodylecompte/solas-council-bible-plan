@@ -1147,27 +1147,27 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => 'The Scots Confession: Article 1',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-1',
             ],
             [
                 'label' => 'The Scots Confession: Article 2',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-2',
             ],
             [
                 'label' => 'The Scots Confession: Article 3',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-3',
             ],
             [
                 'label' => 'The Scots Confession: Article 4',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-4',
             ],
             [
                 'label' => 'The Scots Confession: Article 5',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-5',
             ],
             [
                 'label' => 'The Scots Confession: Article 6',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-6',
             ],
             [
                 'label' => 'Abstract Principles of 1858: Article 3-4',
@@ -1175,27 +1175,27 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => 'The Scots Confession: Article 7',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-7',
             ],
             [
                 'label' => 'The Scots Confession: Article 8',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-8',
             ],
             [
                 'label' => 'The Scots Confession: Article 9',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-9',
             ],
             [
                 'label' => 'The Scots Confession: Article 10',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-10',
             ],
             [
                 'label' => 'The Scots Confession: Article 11',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-11',
             ],
             [
                 'label' => 'The Scots Confession: Article 12',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-12',
             ],
             [
                 'label' => 'Abstract Principles of 1858: Article 5-6',
@@ -1203,27 +1203,27 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => 'The Scots Confession: Article 13',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-13',
             ],
             [
                 'label' => 'The Scots Confession: Article 14',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-14',
             ],
             [
                 'label' => 'The Scots Confession: Article 15',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-15',
             ],
             [
                 'label' => 'The Scots Confession: Article 16',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-16',
             ],
             [
                 'label' => 'The Scots Confession: Article 17',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-17',
             ],
             [
                 'label' => 'The Scots Confession: Article 18',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-18',
             ],
             [
                 'label' => 'Abstract Principles of 1858: Article 7-8',
@@ -1231,27 +1231,27 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => 'The Scots Confession: Article 19',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-19',
             ],
             [
                 'label' => 'The Scots Confession: Article 20',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-20',
             ],
             [
                 'label' => 'The Scots Confession: Article 21',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-21',
             ],
             [
                 'label' => 'The Scots Confession: Article 22',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-22',
             ],
             [
                 'label' => 'The Scots Confession: Article 23',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-23',
             ],
             [
                 'label' => 'The Scots Confession: Article 24',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-24',
             ],
             [
                 'label' => 'Abstract Principles of 1858: Article 9-10',
@@ -1259,7 +1259,7 @@ for the Ordination of Ministers ',
             ],
             [
                 'label' => 'The Scots Confession: Article 25',
-                'resource_url' => '',
+                'resource_url' => 'https://reformedstandards.com/scottish/scots-confession.html#chapter-25',
             ],
             [
                 'label' => 'The Second Helvetic Confession: Chapter 1',
