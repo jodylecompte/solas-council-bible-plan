@@ -2,6 +2,9 @@ import { Layout } from '@/Layouts/Layout';
 import { usePage, Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { parseScriptureReferences } from '@/util/BibleParser';
+import { useState } from 'react';
+import { Inertia } from '@inertiajs/inertia';
+import { FaCheckCircle } from 'react-icons/fa';
 // There's no reason to have this much data but I'll trim this down once the plan day component is finalized
 type PlanData = {
   id: number;
@@ -61,7 +64,7 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
 };
 
 export default function Plan() {
-  const { planData, preferredTranslation } = usePage<PlanPageProps>().props;
+  const { planData, preferredTranslation, flash } = usePage<PlanPageProps>().props;
 
   console.log('Translation: ', preferredTranslation);
 
@@ -71,6 +74,14 @@ export default function Plan() {
   const oldTestamentReading = parseScriptureReferences(planData.ot_reading);
   const newTestamentReading = parseScriptureReferences(planData.nt_reading);
 
+  const markDayComplete = async () => {
+    try {
+      await Inertia.post('/plan/mark-complete', { day: planData.day });
+    } catch (error) {
+      console.error('Error marking day as complete:', error);
+    }
+  };
+
   return (
     <Layout backgroundColor="#F3F4F6">
       <Head title={`Day ${planData.day}`} />
@@ -79,7 +90,22 @@ export default function Plan() {
           <div className="px-4 py-6 sm:px-6 flex flex-col sm:flex-row justify-between items-center">
             <h3 className="text-base font-semibold leading-7 text-gray-900 mb-2 sm:mb-0">Day {planData.day} of 365</h3>
             <div className="">
-              <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700">Mark Day Complete</button>
+              {planData.progress_day == 0 && (
+                <>
+                  <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700" onClick={markDayComplete}>
+                    Mark Day Complete
+                  </button>
+                  <div>
+                    {(flash as any)?.success && <p style={{ color: 'green' }}>{(flash as any).success}</p>}
+                    {(flash as any)?.error && <p style={{ color: 'red' }}>{(flash as any).error}</p>}
+                  </div>
+                </>
+              )}
+              {planData.progress_day == 1 && (
+                <>
+                  <FaCheckCircle size="30" className="text-green-700" />
+                </>
+              )}
             </div>
           </div>
           <div className="px-4 py-6 sm:px-6">

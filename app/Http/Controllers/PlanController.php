@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class PlanController extends Controller
 {
@@ -21,11 +22,11 @@ class PlanController extends Controller
             ->firstOrFail();
 
         $user = Auth::user();
-        
+
 
         $preferredTranslation = $user?->preferredTranslation()
-        ->with('translation')  // Eager-load the related translation
-        ->first();
+            ->with('translation')  // Eager-load the related translation
+            ->first();
 
         return Inertia::render('Plan', [
             'planData' => $plan,
@@ -64,4 +65,24 @@ class PlanController extends Controller
         Log::info("Redirecting user {$userId} to day 1");
         return redirect()->route('plan.show', ['day' => 1]);
     }
+
+    public function markDayComplete(Request $request)
+    {
+        $validated = $request->validate([
+            'day' => 'required|integer',
+        ]);
+
+        $plan = Plan::where('day', $validated['day'])->first();
+
+        if (!$plan) {
+            return redirect()->back()->with('error', 'Plan not found.');
+        }
+
+        $plan->progress_day = 1;
+        $plan->save();
+
+        return redirect()->route('plan.show', ['day' => $validated['day'] + 1])
+            ->with('success', 'Day marked as complete!');
+    }
+
 }

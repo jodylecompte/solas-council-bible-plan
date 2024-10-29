@@ -16,6 +16,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('/plan/mark-complete', [PlanController::class, 'markDayComplete']);
+
 Route::post('/start-plan', [PlanController::class, 'startPlan'])->name('start-plan');
 
 Route::get('/about', function () {
