@@ -3,7 +3,7 @@ export type ScriptureReference = {
   url: string;
 };
 
-export function parseScriptureReferences(input: string): ScriptureReference[] {
+export function parseScriptureReferences(input: string, translationKey = 59): ScriptureReference[] {
   let output: ScriptureReference[] = [];
   let entries = input.split('; ');
 
@@ -16,7 +16,7 @@ export function parseScriptureReferences(input: string): ScriptureReference[] {
     let chapterMatch = firstPosition.match(/^\d+/);
     let chapter = chapterMatch ? chapterMatch[0] : '';
 
-    let startingUrl = `https://www.bible.com/bible/59/${shortBookTitle}.${chapter}`;
+    let startingUrl = `https://www.bible.com/bible/${translationKey}/${shortBookTitle}.${chapter}`;
 
     output.push({
       label: entry,

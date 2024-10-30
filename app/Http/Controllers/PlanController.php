@@ -25,8 +25,8 @@ class PlanController extends Controller
 
 
         $preferredTranslation = $user?->preferredTranslation()
-            ->with('translation')  // Eager-load the related translation
-            ->first();
+            ->with('translation') // Eager-load the related translation
+            ->first()?->translation;
 
         return Inertia::render('Plan', [
             'planData' => $plan,

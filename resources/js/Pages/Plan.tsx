@@ -71,8 +71,11 @@ export default function Plan() {
   const previousDay = planData.day > 1 ? planData.day - 1 : null;
   const nextDay = planData.day < 365 ? planData.day + 1 : null;
 
-  const oldTestamentReading = parseScriptureReferences(planData.ot_reading);
-  const newTestamentReading = parseScriptureReferences(planData.nt_reading);
+  const translationKey = (preferredTranslation as any)?.site_id || '59';
+  const translationName = (preferredTranslation as any)?.short_name || 'ESV';
+
+  const oldTestamentReading = parseScriptureReferences(planData.ot_reading, translationKey);
+  const newTestamentReading = parseScriptureReferences(planData.nt_reading, translationKey);
 
   const markDayComplete = async () => {
     try {
@@ -108,31 +111,33 @@ export default function Plan() {
               )}
             </div>
           </div>
-          <div className="px-4 py-6 sm:px-6">
-            <div role="alert" className="alert alert-">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 shrink-0 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>
-                Scripture links default to ESV, you can choose a prefered translation in your
-                <Link href="/profile" className="underline">
-                  {' '}
-                  user profile settings
-                </Link>
-                .
-              </span>
+          {!preferredTranslation && (
+            <div className="px-4 py-6 sm:px-6">
+              <div role="alert" className="alert alert-">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6 shrink-0 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <span>
+                  Scripture links default to ESV, you can choose a prefered translation in your
+                  <Link href="/profile" className="underline">
+                    {' '}
+                    user profile settings
+                  </Link>
+                  .
+                </span>
+              </div>
             </div>
-          </div>
+          )}
           <div className="border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -140,7 +145,9 @@ export default function Plan() {
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {oldTestamentReading.map((reading) => (
                     <div>
-                      <PlanLink href={reading.url}>{reading.label} (ESV)</PlanLink>
+                      <PlanLink href={reading.url}>
+                        {reading.label} ({translationName})
+                      </PlanLink>
                     </div>
                   ))}
                 </dd>
@@ -150,7 +157,9 @@ export default function Plan() {
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {newTestamentReading.map((reading) => (
                     <div>
-                      <PlanLink href={reading.url}>{reading.label} (ESV)</PlanLink>
+                      <PlanLink href={reading.url}>
+                        {reading.label} ({translationName})
+                      </PlanLink>
                     </div>
                   ))}
                 </dd>
