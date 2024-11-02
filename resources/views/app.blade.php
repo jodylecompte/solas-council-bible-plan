@@ -7,6 +7,16 @@
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <script>
+        // Service Worker setup
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('Service Worker registered'))
+                .catch((error) => console.log('Service Worker registration failed:', error));
+        }
+    </script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
