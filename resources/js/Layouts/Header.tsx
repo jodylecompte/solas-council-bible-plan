@@ -1,6 +1,5 @@
 import { FaUser } from 'react-icons/fa';
 import { Link, useForm, usePage } from '@inertiajs/react';
-import { useAuth } from '@/Context/AuthContext';
 
 export const Header = (props: any) => {
   const pageProps = usePage();
