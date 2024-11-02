@@ -15,17 +15,12 @@ export default function Login({ status, canResetPassword }: { status?: string; c
     remember: false,
   });
 
-  const { setUser } = useAuth();
-
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
 
     post(route('login'), {
       onSuccess: (page) => {
         const user = page.props.auth?.user;
-        if (user) {
-          setUser(user);
-        }
         reset('password');
       },
     });

@@ -1,9 +1,12 @@
 import { FaUser } from 'react-icons/fa';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import { useAuth } from '@/Context/AuthContext';
 
 export const Header = (props: any) => {
-  const { user, setUser } = useAuth();
+  const pageProps = usePage();
+  const user: any = pageProps.props.auth.user;
+
+  console.log(pageProps);
   const { post } = useForm();
 
   const logout = (e: any) => {
@@ -11,7 +14,6 @@ export const Header = (props: any) => {
 
     post(route('logout'), {
       onSuccess: () => {
-        setUser(undefined);
         console.log('Logged out successfully!');
       },
     });

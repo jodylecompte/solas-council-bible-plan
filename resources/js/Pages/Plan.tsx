@@ -66,11 +66,6 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
 export default function Plan() {
   const { planData, preferredTranslation, flash } = usePage<PlanPageProps>().props;
 
-  console.log('Translation: ', preferredTranslation);
-
-  const previousDay = planData.day > 1 ? planData.day - 1 : null;
-  const nextDay = planData.day < 365 ? planData.day + 1 : null;
-
   const translationKey = (preferredTranslation as any)?.site_id || '59';
   const translationName = (preferredTranslation as any)?.short_name || 'ESV';
 

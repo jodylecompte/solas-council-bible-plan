@@ -1,10 +1,10 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 
-import { useAuth } from '@/Context/AuthContext';
 import { Layout } from '@/Layouts/Layout';
 
 export default function Welcome() {
-  const { user } = useAuth();
+  const props = usePage();
+  const user = props.props.authUser;
 
   return (
     <Layout>

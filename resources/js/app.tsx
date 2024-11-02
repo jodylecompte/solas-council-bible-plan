@@ -14,11 +14,7 @@ createInertiaApp({
   setup({ el, App, props }) {
     const initialUser = props.initialPage.props.auth?.user || undefined; // Extract `user` from props
 
-    const appElement = (
-      <AuthProvider initialUser={initialUser}>
-        <App {...props} />
-      </AuthProvider>
-    );
+    const appElement = <App {...props} />;
 
     if (import.meta.env.SSR) {
       hydrateRoot(el, appElement);
