@@ -36,22 +36,23 @@ class PlanController extends Controller
 
     public function startPlan(Request $request)
     {
-        $userId = Auth::id();  // Get the ID of the logged-in user
+        $userId = Auth::id();
 
-        // Step 1: Check the last completed progress day for the user
-        $lastProgressDay = Plan::where('user_id', $userId)
-            ->where('progress_day', 1)
-            ->max('day');
+        // Step 1: Check if the user already has any plan records
+        $hasPlan = Plan::where('user_id', $userId)->exists();
 
-        Log::info("User {$userId} last progress day: {$lastProgressDay}");
+        if ($hasPlan) {
+            // If the user has a plan, find the last completed progress day
+            $lastProgressDay = Plan::where('user_id', $userId)
+                ->where('progress_day', 1)
+                ->max('day');
 
-        if ($lastProgressDay) {
-            $nextDay = $lastProgressDay + 1;
+            $nextDay = $lastProgressDay ? $lastProgressDay + 1 : 1;  // Default to day 1 if no progress
             Log::info("Redirecting user {$userId} to day {$nextDay}");
             return redirect()->route('plan.show', ['day' => $nextDay]);
         }
 
-        // Step 2: If no progress found, generate a new plan for the user
+        // Step 2: If no plan exists, generate a new plan for the user
         Log::info("Generating a new plan for user {$userId}");
         try {
             Plan::createNewPlan($userId);  // Call the static method to generate the plan
