@@ -2,7 +2,7 @@ import { Layout } from '@/Layouts/Layout';
 import { usePage, Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { parseScriptureReferences } from '@/util/BibleParser';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { FaCheckCircle } from 'react-icons/fa';
 // There's no reason to have this much data but I'll trim this down once the plan day component is finalized
@@ -72,9 +72,17 @@ export default function Plan() {
   const oldTestamentReading = parseScriptureReferences(planData.ot_reading, translationKey);
   const newTestamentReading = parseScriptureReferences(planData.nt_reading, translationKey);
 
+  useEffect(() => {
+    const navigationType = (performance.getEntriesByType('navigation')[0] as any)?.type;
+
+    if (navigationType === 'back_forward') {
+      Inertia.reload({ preserveScroll: true, preserveState: false });
+    }
+  }, []);
+
   const markDayComplete = async () => {
     try {
-      await Inertia.post('/plan/mark-complete', { day: planData.day });
+      await Inertia.post('/plan/mark-complete', { day: planData.day }, { preserveState: false });
     } catch (error) {
       console.error('Error marking day as complete:', error);
     }
