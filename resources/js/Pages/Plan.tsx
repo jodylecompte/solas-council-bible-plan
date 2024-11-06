@@ -4,7 +4,7 @@ import { PageProps } from '@/types';
 import { parseScriptureReferences } from '@/util/BibleParser';
 import { useEffect, useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 // There's no reason to have this much data but I'll trim this down once the plan day component is finalized
 type PlanData = {
   id: number;
@@ -61,6 +61,13 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
       {children}
     </a>
   );
+};
+
+const handleLinkClick = (day: number) => {
+  Inertia.visit(`/plan/${day}`, {
+    replace: true,
+    preserveState: false,
+  });
 };
 
 export default function Plan() {
@@ -186,6 +193,26 @@ export default function Plan() {
                 </dd>
               </div>
             </dl>
+          </div>
+          <div className="px-6 flex justify-between mb-4">
+            <div>
+              {planData.day > 1 && (
+                <>
+                  <button onClick={() => handleLinkClick(planData.day - 1)} className="flex items-center gap-3">
+                    <FaArrowLeft /> Day {planData.day - 1}
+                  </button>
+                </>
+              )}
+            </div>
+            <div>
+              {planData.day < 365 && (
+                <>
+                  <button onClick={() => handleLinkClick(planData.day + 1)} className="flex items-center gap-3">
+                    Day {planData.day + 1} <FaArrowRight />
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
