@@ -72,6 +72,7 @@ const handleLinkClick = (day: number) => {
 
 export default function Plan() {
   const { planData, preferredTranslation, flash } = usePage<PlanPageProps>().props;
+  const [selectedDay, setSelectedDay] = useState(planData.day);
 
   const translationKey = (preferredTranslation as any)?.site_id || '59';
   const translationName = (preferredTranslation as any)?.short_name || 'ESV';
@@ -94,6 +95,12 @@ export default function Plan() {
       console.error('Error marking day as complete:', error);
     }
   };
+
+  const handleDayChange = (event: any) => {
+    setSelectedDay(Number(event.target.value)); // Update the selected day
+  };
+
+  const dayList = Array.from({ length: 365 }, (_, i) => i + 1);
 
   return (
     <Layout backgroundColor="#F3F4F6">
@@ -148,6 +155,18 @@ export default function Plan() {
               </div>
             </div>
           )}
+          <div className="flex justify-center gap-4 mb-4">
+            <select defaultValue={selectedDay} onChange={handleDayChange}>
+              {dayList.map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
+            </select>
+            <button className="btn btn-neutral" onClick={() => handleLinkClick(selectedDay)}>
+              Go To Day
+            </button>
+          </div>
           <div className="border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -194,7 +213,7 @@ export default function Plan() {
               </div>
             </dl>
           </div>
-          <div className="px-6 flex justify-between mb-4">
+          <div className="px-6 flex justify-between mb-4 mt-10">
             <div>
               {planData.day > 1 && (
                 <>
