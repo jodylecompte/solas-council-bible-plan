@@ -46,6 +46,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
+    }
+
     public function preferredTranslation()
     {
         return $this->hasOne(UserPreferredTranslation::class);

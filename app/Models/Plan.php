@@ -26,6 +26,12 @@ class Plan extends Model
         return $this->belongsTo(Confession::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
     public function catechism()
     {
         return $this->belongsTo(Catechism::class);
