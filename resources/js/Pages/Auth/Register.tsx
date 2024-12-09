@@ -28,7 +28,7 @@ export default function Register() {
 
       <form onSubmit={submit} className="md:w-1/2 mx-auto">
         <div>
-          <InputLabel htmlFor="name" value="Name" />
+          <InputLabel htmlFor="name" value="First Name" />
 
           <TextInput
             id="name"
