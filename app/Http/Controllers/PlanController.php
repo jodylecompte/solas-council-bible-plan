@@ -17,20 +17,22 @@ class PlanController extends Controller
             abort(404, 'Day must be between 1 and 365.');
         }
 
-        $plan = Plan::where('day', $day)
-            ->with(['creed', 'confession', 'catechism'])
-            ->firstOrFail();
-
         $user = Auth::user();
 
-
-        $preferredTranslation = $user?->preferredTranslation()
-            ->with('translation') // Eager-load the related translation
-            ->first()?->translation;
+        // Load the plan along with all required relationships
+        $plan = $user->plans()
+            ->where('day', $day)
+            ->with([
+                'creed',
+                'confession',
+                'catechism',
+                'user.preferredTranslation.translation' // Eager-load preferredTranslation with its related translation
+            ])
+            ->firstOrFail();
 
         return Inertia::render('Plan', [
             'planData' => $plan,
-            'preferredTranslation' => $preferredTranslation,
+            'preferredTranslation' => $plan->user->preferredTranslation?->translation,
         ]);
     }
 
@@ -84,6 +86,14 @@ class PlanController extends Controller
 
         return redirect()->route('plan.show', ['day' => $validated['day'] + 1])
             ->with('success', 'Day marked as complete!');
+    }
+
+    public function planDashboard(Request $request)
+    {
+        return Inertia::render('Dashboard', [
+            // 'planData' => $plan,
+            // 'preferredTranslation' => $preferredTranslation,
+        ]);
     }
 
 }
