@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('plan.start', absolute: false));
+        return redirect(route('plan.dashboard', absolute: false));
     }
 }
