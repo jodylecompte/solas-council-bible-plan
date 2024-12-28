@@ -90,9 +90,11 @@ class PlanController extends Controller
 
     public function planDashboard(Request $request)
     {
+        $user = Auth::user();
+        $hasPlan = $user->plans()->exists();
+
         return Inertia::render('Dashboard', [
-            // 'planData' => $plan,
-            // 'preferredTranslation' => $preferredTranslation,
+            'hasPlan' => $hasPlan,
         ]);
     }
 

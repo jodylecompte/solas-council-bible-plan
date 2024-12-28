@@ -28,9 +28,11 @@ Route::get('/about', function () {
 //     return Inertia::render('Demo');
 // })->middleware(['auth', 'verified'])->name('demo');
 
-Route::get('/plan', [PlanController::class, 'startPlan'])
-    ->name('plan.start')
+Route::get('/plan', [PlanController::class, 'planDashboard'])
+    ->name('plan.dashboard')
     ->middleware('auth');
+
+Route::post('/start-plan', [PlanController::class, 'startPlan'])->name('plan.start');
 
 Route::get('/plan/{day}', [PlanController::class, 'show'])
     ->where('day', '[1-9][0-9]{0,2}')
