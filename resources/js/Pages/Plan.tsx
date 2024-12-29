@@ -94,6 +94,7 @@ export default function Plan() {
   };
 
   const handleLinkClick = (day: number) => {
+    console.log(day);
     Inertia.visit(`/plan/${day}`, {
       preserveState: false,
     });
@@ -162,9 +163,9 @@ export default function Plan() {
                 </option>
               ))}
             </select>
-            <button className="btn btn-neutral" onClick={() => handleLinkClick(selectedDay)}>
+            <Link href={`/plan/${selectedDay}`} className="btn btn-neutral">
               Go To Day
-            </button>
+            </Link>
           </div>
           <div className="border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
@@ -216,9 +217,9 @@ export default function Plan() {
             <div>
               {planData.day > 1 && (
                 <>
-                  <a href={`/plan/${planData.day - 1}`} className="flex items-center gap-3 prose">
+                  <Link href={`/plan/${planData.day - 1}`} className="flex items-center gap-3 prose">
                     <FaArrowLeft /> Day {planData.day - 1}
-                  </a>
+                  </Link>
                 </>
               )}
             </div>
@@ -228,9 +229,9 @@ export default function Plan() {
                   {/* <button onClick={() => handleLinkClick(planData.day + 1)} className="flex items-center gap-3">
                     Day {planData.day + 1} <FaArrowRight />
                   </button> */}
-                  <a href={`/plan/${planData.day + 1}`} className="flex items-center gap-3 prose">
+                  <Link href={`/plan/${planData.day + 1}`} className="flex items-center gap-3 prose">
                     <FaArrowRight /> Day {planData.day + 1}
-                  </a>
+                  </Link>
                 </>
               )}
             </div>
