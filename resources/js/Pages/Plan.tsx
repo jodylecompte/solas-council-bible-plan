@@ -63,13 +63,6 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
   );
 };
 
-const handleLinkClick = (day: number) => {
-  Inertia.visit(`/plan/${day}`, {
-    replace: true,
-    preserveState: false,
-  });
-};
-
 export default function Plan() {
   const { planData, preferredTranslation, flash } = usePage<PlanPageProps>().props;
   const [selectedDay, setSelectedDay] = useState(planData.day);
@@ -98,6 +91,12 @@ export default function Plan() {
 
   const handleDayChange = (event: any) => {
     setSelectedDay(Number(event.target.value)); // Update the selected day
+  };
+
+  const handleLinkClick = (day: number) => {
+    Inertia.visit(`/plan/${day}`, {
+      preserveState: false,
+    });
   };
 
   const dayList = Array.from({ length: 365 }, (_, i) => i + 1);

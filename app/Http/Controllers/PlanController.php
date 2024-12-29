@@ -93,8 +93,15 @@ class PlanController extends Controller
         $user = Auth::user();
         $hasPlan = $user->plans()->exists();
 
+        $nextIncompleteDay = $user->plans()
+            ->where('progress_day', 0)
+            ->orderBy('day', 'asc')
+            ->value('day') ?? 1;
+
         return Inertia::render('Dashboard', [
             'hasPlan' => $hasPlan,
+            'user' => $user,
+            'nextIncompleteDay' => $nextIncompleteDay,
         ]);
     }
 
