@@ -216,18 +216,21 @@ export default function Plan() {
             <div>
               {planData.day > 1 && (
                 <>
-                  <button onClick={() => handleLinkClick(planData.day - 1)} className="flex items-center gap-3">
+                  <a href={`/plan/${planData.day - 1}`} className="flex items-center gap-3 prose">
                     <FaArrowLeft /> Day {planData.day - 1}
-                  </button>
+                  </a>
                 </>
               )}
             </div>
             <div>
               {planData.day < 365 && (
                 <>
-                  <button onClick={() => handleLinkClick(planData.day + 1)} className="flex items-center gap-3">
+                  {/* <button onClick={() => handleLinkClick(planData.day + 1)} className="flex items-center gap-3">
                     Day {planData.day + 1} <FaArrowRight />
-                  </button>
+                  </button> */}
+                  <a href={`/plan/${planData.day + 1}`} className="flex items-center gap-3 prose">
+                    <FaArrowRight /> Day {planData.day + 1}
+                  </a>
                 </>
               )}
             </div>
