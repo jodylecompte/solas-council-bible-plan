@@ -66,6 +66,9 @@ const PlanLink = ({ href, children }: PlanLinkProps) => {
 export default function Plan() {
   const { planData, preferredTranslation, flash } = usePage<PlanPageProps>().props;
   const [selectedDay, setSelectedDay] = useState(planData.day);
+  const [isComplete, setIsComplete] = useState(planData.progress_day == 0 ? false : true);
+
+  console.log(isComplete);
 
   const translationKey = (preferredTranslation as any)?.site_id || '59';
   const translationName = (preferredTranslation as any)?.short_name || 'ESV';
@@ -84,6 +87,7 @@ export default function Plan() {
   const markDayComplete = async () => {
     try {
       await Inertia.post('/plan/mark-complete', { day: planData.day }, { preserveState: false });
+      setIsComplete(true);
     } catch (error) {
       console.error('Error marking day as complete:', error);
     }
@@ -91,13 +95,6 @@ export default function Plan() {
 
   const handleDayChange = (event: any) => {
     setSelectedDay(Number(event.target.value)); // Update the selected day
-  };
-
-  const handleLinkClick = (day: number) => {
-    console.log(day);
-    Inertia.visit(`/plan/${day}`, {
-      preserveState: false,
-    });
   };
 
   const dayList = Array.from({ length: 365 }, (_, i) => i + 1);
@@ -110,7 +107,7 @@ export default function Plan() {
           <div className="px-4 py-6 sm:px-6 flex flex-col sm:flex-row justify-between items-center">
             <h3 className="text-base font-semibold leading-7 text-gray-900 mb-2 sm:mb-0">Day {planData.day} of 365</h3>
             <div className="">
-              {planData.progress_day == 0 && (
+              {!isComplete && (
                 <>
                   <button className="btn bg-red-700 text-white btn-ghost hover:bg-red-700" onClick={markDayComplete}>
                     Mark Day Complete
@@ -121,7 +118,7 @@ export default function Plan() {
                   </div>
                 </>
               )}
-              {planData.progress_day == 1 && (
+              {isComplete && (
                 <>
                   <FaCheckCircle size="30" className="text-green-700" />
                 </>
